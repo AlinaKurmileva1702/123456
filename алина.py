@@ -18,7 +18,7 @@ bt_1.place(x=145,y=50)
 lb_Xn1=Label(root,text="Xn",bg="orange",width=2)
 lb_Xn1.place(x=250,y=50)
 
-lb_Xn1_otv=Label(root,bg="white",width=12)
+lb_Xn1_otv=Label(root,bg="white",width=18)
 lb_Xn1_otv.place(x=280,y=50)
 
 lb_ogr=Label(root,text="Ограниченный рост",width=51,bg="orange")
@@ -116,4 +116,65 @@ canv.place(x=140,y=300)
 
 bt=Button(root,text="График",width=10)
 bt.place(x=12,y=350)
+
+def neogr_rost(event):
+    a = float(ent_a.get())
+    N = int(ent_n.get())
+    gertv = int(ent_x1.get())
+
+    for i in range(N):
+        gertv = gertv*a
+
+    lb_Xn1_otv["text"] = str(int(gertv))
+        
+bt_1.bind("<Button-1>",neogr_rost)
+
+def ogr_rost(event):
+    a = float(ent_a.get())
+    b = float(ent_b.get())
+    N = int(ent_n.get())
+    gertv = int(ent_x1.get())
+
+    for i in range(N):
+        gertv =(a-b*gertv)*gertv
+
+    lb_Xn2_otv["text"] = str(int(gertv))
+        
+bt_2.bind("<Button-1>",ogr_rost)
+
+def ogr_rost_s_otlovom(event):
+    a = float(ent_a.get())
+    b = float(ent_b.get())
+    c = float(ent_c.get())
+    N = int(ent_n.get())
+    gertv = int(ent_x1.get())
+
+    for i in range(N):
+        gertv =(a-b*gertv)*gertv-c
+
+    lb_Xn3_otv["text"] = str(int(gertv))
+        
+bt_3.bind("<Button-1>",ogr_rost_s_otlovom)
+
+def xichnik_gertva(event):
+    a = float(ent_a.get())
+    b = float(ent_b.get())
+    c = float(ent_c.get())
+    d= float(ent_d.get())
+    f = float(ent_f.get())
+    q = float(ent_q.get())
+    N = int(ent_n.get())
+    gertv = int(ent_x1.get())
+    xichnik = int(ent_y1.get())
+    
+    for i in range(N):
+        xichnik=d*xichnik+q*gertv*xichnik
+        gertv =(a-b*gertv)*gertv-c-f*gertv*xichnik
+        
+        
+    lb_Xn4_otv["text"] = str(int(gertv))
+    lb_Yn_otv["text"] = str(int(xichnik))
+        
+bt_4.bind("<Button-1>",xichnik_gertva)
+
 root.mainloop()
